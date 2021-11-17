@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://JAVA.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>EZEN</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+
+  <servlet>
+    <servlet-name>NowServlet</servlet-name>
+    <servlet-class>ez.chap02.NowServlet</servlet-class>    
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>NowServlet</servlet-name>
+    <url-pattern>/now</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>JDBCDriverLoader</servlet-name>
+  	<servlet-class>loader.Loader</servlet-class>
+  	<init-param>
+  		<param-name>jdbcdriver</param-name>
+  		<param-value>oracle.jdbc.driver.OracleDriver</param-value>
+  	</init-param>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>DBCPInit</servlet-name>
+  	<servlet-class>loader.DBCPinit</servlet-class>
+  	<init-param>
+  		<param-name>jdbcdriver</param-name>
+  		<param-value>oracle.jdbc.driver.OracleDriver</param-value>
+  	</init-param>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <jsp-config>
+  	<jsp-property-group>
+  		<url-pattern>/nov05/autoInclude.jsp</url-pattern>
+  		<include-prelude>/nov05/common/variable.jspf</include-prelude>
+  		<include-coda>/nov05/common/footer.jspf</include-coda>
+  	</jsp-property-group>
+  </jsp-config>
+  
+  <!-- <error-page>
+  	<error-code>500</error-code>
+  	<location>/nov09/error/error500.jsp</location>
+  </error-page> -->
+</web-app>
