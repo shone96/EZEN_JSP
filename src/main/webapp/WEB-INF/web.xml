@@ -40,13 +40,95 @@
   	<load-on-startup>1</load-on-startup>
   </servlet>
   
+  <servlet>
+  	<servlet-name>MessageDaoProviderInit</servlet-name>
+  	<servlet-class>dao.MessageDaoProviderInit</servlet-class>
+  	<init-param>
+  		<param-name>dbms</param-name>
+  		<param-value>oracle</param-value>
+  	</init-param>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>tiles</servlet-name>
+  	<servlet-class>org.apache.tiles.web.startup.TilesServlet</servlet-class>
+  	<init-param>
+  		<param-name>
+  		org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG
+  		</param-name>
+  		<param-value>
+  		/WEB-INF/tiles-hello.xml, /WEB-INF/tiles-service.xml
+  		</param-value>
+  	</init-param>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>TilesDispatchServlet</servlet-name>
+  	<servlet-class>org.apache.tiles.web.util.TilesDispatchServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>TilesDispatchServlet</servlet-name>
+  	<url-pattern>*.tiles</url-pattern>
+  </servlet-mapping>
+  
   <jsp-config>
+  	<taglib>
+  		<taglib-uri>
+  			/WEB-INF/el-functions.tld
+  		</taglib-uri>
+  		<taglib-location>
+  			/WEB-INF/el-functions.tld
+  		</taglib-location>  		
+  	</taglib>
   	<jsp-property-group>
   		<url-pattern>/nov05/autoInclude.jsp</url-pattern>
   		<include-prelude>/nov05/common/variable.jspf</include-prelude>
   		<include-coda>/nov05/common/footer.jspf</include-coda>
   	</jsp-property-group>
   </jsp-config>
+  
+  <!-- mvc 패턴 2021-12-13 -->
+  <servlet>
+  	<servlet-name>SimpleController</servlet-name>
+  	<servlet-class>controller.SimpleController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>SimpleController</servlet-name>
+  	<url-pattern>/simple</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>ControllerUsingFile</servlet-name>
+  	<servlet-class>controller.ControllerUsingFile</servlet-class>
+  	<init-param>
+  		<param-name>configFile</param-name>
+  		<param-value>/WEB-INF/commandHandler.properties</param-value>
+  	</init-param>  	
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ControllerUsingFile</servlet-name>
+  	<url-pattern>/ControllerUsingFile</url-pattern>
+  </servlet-mapping>
+    
+  <servlet>
+  	<servlet-name>ControllerUsingURI</servlet-name>
+  	<servlet-class>controller.ControllerUsingURI2</servlet-class>
+  	<init-param>
+  		<param-name>configFile2</param-name>
+  		<param-value>/WEB-INF/commandHandlerURI.properties</param-value>
+  	</init-param>  	
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ControllerUsingURI</servlet-name>
+  	<url-pattern>*.do</url-pattern>
+  </servlet-mapping>  
+  
   
   <!-- <error-page>
   	<error-code>500</error-code>
